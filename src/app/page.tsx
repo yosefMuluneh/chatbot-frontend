@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { ChatSession, Message } from "@/types/chat";
 
 // API base URL
-const API_URL = "http://localhost:8000/chat";
+const API_URL = "https://chatbot-backend-jbhd.onrender.com/chat";
 
 // API Functions
 const fetchSessions = async (): Promise<ChatSession[]> => {
