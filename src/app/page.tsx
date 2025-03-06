@@ -8,7 +8,8 @@ import { Button } from "@/components/ui/button";
 import { ChatSession, Message } from "@/types/chat";
 
 // API base URL
-const API_URL = "https://chatbot-backend-jbhd.onrender.com/chat";
+// const API_URL = "https://chatbot-backend-jbhd.onrender.com/chat";
+const API_URL = "http://0.0.0.0:8000/chat";
 
 // API Functions
 const fetchSessions = async (): Promise<ChatSession[]> => {
@@ -50,6 +51,7 @@ const clearChatHistory = async (sessionId: number): Promise<void> => {
 };
 
 const sendMessage = async (sessionId: number, message: string, model: string): Promise<Message> => {
+  console.log("Selected model:", model);
   const response = await fetch(`${API_URL}/${sessionId}?model=${model}`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -313,8 +315,8 @@ export default function Home() {
             onChange={(e) => setSelectedModel(e.target.value)}
             className="p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
           >
-            <option value="blenderbot">BlenderBot (Light)</option>
-            <option value="blenderbot-smart">BlenderBot (Smart)</option>
+            <option value="gemini-1.5-flash">Gemini 1.5</option>
+            <option value="gemini-2.0-flash">Gemini 2.0</option>
           </select>
           <Button
             onClick={handleClearChat}
